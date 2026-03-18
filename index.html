@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lalo Plomería | Plomero Profesional en CABA</title>
+<meta name="description" content="Soluciones de plomería y calefacción confiables en Capital Federal. Más de 10 años de experiencia. Palermo, CABA. Tel: 011 4559-1554">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1e3a5f;
+    --navy-dark: #152d4a;
+    --navy-mid: #2a4a73;
+    --orange: #e8772e;
+    --orange-light: #f09050;
+    --orange-pale: #fdf0e8;
+    --gray-bg: #f5f5f3;
+    --gray-light: #ebebeb;
+    --text: #1a1a2e;
+    --text-mid: #4a4a6a;
+    --text-light: #8888aa;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; color: var(--text); overflow-x: hidden; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--gray-light);
+    padding: 0 60px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: box-shadow 0.3s;
+  }
+
+  nav.scrolled { box-shadow: 0 2px 20px rgba(0,0,0,0.08); }
+
+  .nav-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--navy);
+    letter-spacing: -0.01em;
+  }
+
+  .nav-logo span { color: var(--orange); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 36px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-mid);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--navy); }
+
+  .btn-nav {
+    background: var(--orange);
+    color: white !important;
+    padding: 10px 22px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.88rem !important;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    transition: background 0.2s, transform 0.2s !important;
+  }
+
+  .btn-nav:hover { background: var(--orange-light) !important; transform: translateY(-1px); }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    padding-top: 70px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(to right, rgba(20,35,60,0.88) 45%, rgba(20,35,60,0.5) 100%),
+      url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1400&q=80') center/cover no-repeat;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 7px 16px;
+    border-radius: 100px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.2s forwards;
+  }
+
+  .hero-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(2.4rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: white;
+    line-height: 1.15;
+    margin-bottom: 20px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.35s forwards;
+  }
+
+  .hero-title span { color: var(--orange); }
+
+  .hero-desc {
+    font-size: 1rem;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.7;
+    margin-bottom: 32px;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 0.7s 0.65s forwards;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: rgba(255,255,255,0.75);
+    font-size: 0.88rem;
+  }
+
+  .hero-meta-item svg { color: var(--orange); flex-shrink: 0; }
+
+  /* FORM CARD */
+  .hero-form-card {
+    background: white;
+    border-radius: 12px;
+    padding: 36px 32px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    opacity: 0;
+    animation: fadeUp 0.7s 0.4s forwards;
+  }
+
+  .hero-form-card h3 {
+    font-family: 'Lora', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+
+  .hero-form-card p {
+    font-size: 0.85rem;
+    color: var(--text-light);
+    margin-bottom: 24px;
+  }
+
+  .form-group { margin-bottom: 14px; }
+
+  .form-group input,
+  .form-group textarea {
+    width: 100%;
+    padding: 13px 16px;
+    border: 1.5px solid var(--gray-light);
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9rem;
+    color: var(--text);
+    background: #fafafa;
+    transition: border-color 0.2s, background 0.2s;
+    outline: none;
+    resize: none;
+  }
+
+  .form-group input:focus,
+  .form-group textarea:focus {
+    border-color: var(--orange);
+    background: white;
+  }
+
+  .form-group input::placeholder,
+  .form-group textarea::placeholder { color: var(--text-light); }
+
+  .form-group textarea { height: 90px; }
+
+  .btn-form {
+    width: 100%;
+    background: var(--orange);
+    color: white;
+    border: none;
+    padding: 15px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: background 0.2s, transform 0.2s;
+    margin-bottom: 12px;
+  }
+
+  .btn-form:hover { background: var(--orange-light); transform: translateY(-1px); }
+
+  .form-note {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  /* ─── SECTIONS ─── */
+  .section-tag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 10px;
+  }
+
+  .section-title {
+    font-family: 'Lora', serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+
+  /* ─── SERVICIOS ─── */
+  #servicios {
+    background: var(--gray-bg);
+    padding: 100px 60px;
+  }
+
+  .servicios-header {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .servicios-sub {
+    text-align: center;
+    color: var(--text-mid);
+    font-size: 1rem;
+    margin-bottom: 60px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .servicio-card {
+    background: white;
+    border-radius: 12px;
+    padding: 36px 28px;
+    border: 1px solid var(--gray-light);
+    transition: box-shadow 0.3s, transform 0.3s;
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  .servicio-card:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+    transform: translateY(-4px) !important;
+  }
+
+  .serv-icon {
+    width: 52px; height: 52px;
+    border-radius: 10px;
+    background: var(--orange-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+  }
+
+  .serv-icon.active { background: var(--orange); }
+
+  .serv-name {
+    font-family: 'Lora', serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 10px;
+  }
+
+  .serv-desc {
+    font-size: 0.87rem;
+    color: var(--text-mid);
+    line-height: 1.6;
+  }
+
+  /* ─── NOSOTROS ─── */
+  #nosotros {
+    background: white;
+    padding: 100px 60px;
+  }
+
+  .nosotros-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .nosotros-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .feature-item { display: flex; gap: 14px; align-items: flex-start; }
+
+  .feature-icon {
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    background: var(--orange-pale);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 1rem;
+  }
+
+  .feature-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .feature-desc {
+    font-size: 0.82rem;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  .stats-card {
+    background: var(--navy);
+    border-radius: 16px;
+    padding: 44px 40px;
+    color: white;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-bottom: 36px;
+  }
+
+  .stat-item { text-align: center; }
+
+  .stat-num {
+    font-family: 'Lora', serif;
+    font-size: 2.8rem;
+    font-weight: 700;
+    color: var(--orange);
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .stat-label {
+    font-size: 0.82rem;
+    color: rgba(255,255,255,0.65);
+    font-weight: 400;
+  }
+
+  .stats-divider {
+    height: 1px;
+    background: rgba(255,255,255,0.12);
+    margin-bottom: 28px;
+  }
+
+  .stats-testimonial {
+    font-size: 0.9rem;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+
+  .stats-author {
+    font-size: 0.8rem;
+    color: var(--orange);
+    font-weight: 500;
+  }
+
+  /* ─── GALERÍA ─── */
+  #galeria {
+    background: var(--gray-bg);
+    padding: 100px 60px;
+  }
+
+  .galeria-header { text-align: center; margin-bottom: 50px; }
+
+  .galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .galeria-item {
+    border-radius: 10px;
+    overflow: hidden;
+    aspect-ratio: 3/4;
+    position: relative;
+  }
+
+  .galeria-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s;
+    display: block;
+  }
+
+  .galeria-item:hover img { transform: scale(1.06); }
+
+  /* ─── FAQ ─── */
+  #faq {
+    background: var(--gray-bg);
+    padding: 20px 60px 100px;
+  }
+
+  .faq-header { text-align: center; margin-bottom: 50px; }
+
+  .faq-list {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .faq-item {
+    background: white;
+    border-radius: 10px;
+    border: 1px solid var(--gray-light);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+
+  .faq-item:hover { box-shadow: 0 4px 15px rgba(0,0,0,0.07); }
+
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text);
+    text-align: left;
+    gap: 16px;
+  }
+
+  .faq-q svg {
+    flex-shrink: 0;
+    transition: transform 0.3s;
+    color: var(--text-light);
+  }
+
+  .faq-item.open .faq-q svg { transform: rotate(180deg); }
+
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, padding 0.3s;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    line-height: 1.7;
+    padding: 0 24px;
+  }
+
+  .faq-item.open .faq-a {
+    max-height: 200px;
+    padding: 0 24px 20px;
+  }
+
+  /* ─── CTA FINAL ─── */
+  #cta-final {
+    background: var(--navy);
+    padding: 100px 60px;
+    text-align: center;
+  }
+
+  #cta-final h2 {
+    font-family: 'Lora', serif;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700;
+    color: white;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  #cta-final h2 span { color: var(--orange); }
+
+  #cta-final p {
+    color: rgba(255,255,255,0.7);
+    font-size: 1rem;
+    margin-bottom: 44px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-orange {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: var(--orange);
+    color: white;
+    text-decoration: none;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: background 0.2s, transform 0.2s;
+  }
+
+  .btn-orange:hover { background: var(--orange-light); transform: translateY(-2px); }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    background: transparent;
+    color: white;
+    text-decoration: none;
+    padding: 15px 32px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1.5px solid rgba(255,255,255,0.3);
+    transition: border-color 0.2s, transform 0.2s;
+  }
+
+  .btn-outline:hover { border-color: white; transform: translateY(-2px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--navy-dark);
+    padding: 50px 60px 30px;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 50px;
+    margin-bottom: 40px;
+  }
+
+  .footer-logo {
+    font-family: 'Lora', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 12px;
+  }
+
+  .footer-logo span { color: var(--orange); }
+
+  .footer-desc {
+    font-size: 0.85rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  }
+
+  .footer-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+  }
+
+  .footer-info-item svg { color: var(--orange); flex-shrink: 0; }
+
+  .footer-col-title {
+    font-weight: 600;
+    color: white;
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+
+  .footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+
+  .footer-links a:hover { color: var(--orange); }
+
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.35);
+  }
+
+  /* ─── WHATSAPP FLOTANTE ─── */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px; right: 28px;
+    z-index: 500;
+    background: #25D366;
+    width: 58px; height: 58px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.5);
+    animation: pulse-wa 2.5s infinite;
+    text-decoration: none;
+    transition: transform 0.3s;
+  }
+
+  .whatsapp-float:hover { transform: scale(1.1); animation: none; }
+  .whatsapp-float svg { width: 28px; height: 28px; fill: white; }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes pulse-wa {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5); }
+    50% { box-shadow: 0 4px 40px rgba(37,211,102,0.8), 0 0 0 8px rgba(37,211,102,0.1); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-d1 { transition-delay: 0.1s; }
+  .reveal-d2 { transition-delay: 0.2s; }
+  .reveal-d3 { transition-delay: 0.3s; }
+  .reveal-d4 { transition-delay: 0.4s; }
+
+  /* ─── MOBILE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; padding: 30px 20px 50px; }
+    #servicios, #nosotros, #galeria, #faq, #cta-final { padding: 70px 20px; }
+    .servicios-grid { grid-template-columns: 1fr; }
+    .nosotros-grid { grid-template-columns: 1fr; gap: 40px; }
+    .nosotros-features { grid-template-columns: 1fr; }
+    .galeria-grid { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr; gap: 30px; }
+    footer { padding: 40px 20px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-logo">LALO<span>PLOMERÍA</span></div>
+  <ul class="nav-links">
+    <li><a href="#hero">Inicio</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li>
+      <a href="tel:01145591554" class="btn-nav">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Llamar ahora
+      </a>
+    </li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">🔧 Plomería &amp; Calefacción en CABA</div>
+      <h1 class="hero-title">Soluciones de plomería <span>confiables</span> para tu hogar</h1>
+      <p class="hero-desc">Más de 10 años de experiencia. Servicio rápido, precios justos y trabajo garantizado en toda la Ciudad de Buenos Aires.</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--orange)"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Palermo, CABA
+        </div>
+        <div class="hero-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--orange)"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Lun–Sáb 9–20 hs
+        </div>
+        <div class="hero-meta-item">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--orange)"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          011 4559-1554
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-form-card">
+      <h3>Pedí tu presupuesto gratis</h3>
+      <p>Respondemos en menos de 2 horas</p>
+      <div class="form-group">
+        <input type="text" placeholder="Tu nombre">
+      </div>
+      <div class="form-group">
+        <input type="tel" placeholder="Tu teléfono">
+      </div>
+      <div class="form-group">
+        <textarea placeholder="Describí tu problema (opcional)"></textarea>
+      </div>
+      <button class="btn-form" onclick="window.open('https://wa.me/5491145591554?text=Hola! Quiero un presupuesto gratis para plomería','_blank')">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        Enviar consulta
+      </button>
+      <p class="form-note">Sin compromiso · Respuesta rápida</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios">
+  <div class="servicios-header">
+    <p class="section-tag reveal">Lo que hacemos</p>
+    <h2 class="section-title reveal reveal-d1">Nuestros servicios</h2>
+  </div>
+  <p class="servicios-sub reveal reveal-d2">Ofrecemos soluciones completas de plomería y calefacción para hogares y comercios en Capital Federal.</p>
+
+  <div class="servicios-grid">
+    <div class="servicio-card reveal">
+      <div class="serv-icon">🔧</div>
+      <div class="serv-name">Reparaciones generales</div>
+      <div class="serv-desc">Canillas, caños, válvulas y todo tipo de arreglos de plomería.</div>
+    </div>
+    <div class="servicio-card reveal reveal-d1">
+      <div class="serv-icon">🔥</div>
+      <div class="serv-name">Calefacción</div>
+      <div class="serv-desc">Instalación y mantenimiento de calderas, radiadores y sistemas de calefacción.</div>
+    </div>
+    <div class="servicio-card reveal reveal-d2">
+      <div class="serv-icon active">🚿</div>
+      <div class="serv-name">Destapaciones</div>
+      <div class="serv-desc">Desobstrucción de cañerías con equipamiento profesional.</div>
+    </div>
+    <div class="servicio-card reveal reveal-d1">
+      <div class="serv-icon">🛁</div>
+      <div class="serv-name">Baños completos</div>
+      <div class="serv-desc">Remodelación e instalación de baños, duchas y sanitarios.</div>
+    </div>
+    <div class="servicio-card reveal reveal-d2">
+      <div class="serv-icon">⚙️</div>
+      <div class="serv-name">Instalación de gas</div>
+      <div class="serv-desc">Conexiones de gas seguras y certificadas para tu hogar.</div>
+    </div>
+    <div class="servicio-card reveal reveal-d3">
+      <div class="serv-icon">💧</div>
+      <div class="serv-name">Agua caliente</div>
+      <div class="serv-desc">Termotanques, calefones y sistemas de agua caliente.</div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSOTROS -->
+<section id="nosotros">
+  <div class="nosotros-grid">
+    <div>
+      <p class="section-tag reveal">Sobre nosotros</p>
+      <h2 class="section-title reveal reveal-d1">¿Por qué elegir a <span style="color:var(--orange)">Lalo Plomería</span>?</h2>
+      <p class="reveal reveal-d2" style="color:var(--text-mid);font-size:0.95rem;line-height:1.7;margin-top:16px;">Somos una empresa familiar con más de 10 años de trayectoria. Nos especializamos en plomería y calefacción, brindando un servicio serio, puntual y a precios accesibles en toda la Ciudad Autónoma de Buenos Aires.</p>
+
+      <div class="nosotros-features reveal reveal-d2">
+        <div class="feature-item">
+          <div class="feature-icon">⏱️</div>
+          <div>
+            <div class="feature-name">Respuesta rápida</div>
+            <div class="feature-desc">Llegamos el mismo día en la mayoría de los casos. Sin esperas innecesarias.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">🛡️</div>
+          <div>
+            <div class="feature-name">Trabajo garantizado</div>
+            <div class="feature-desc">Respaldamos cada trabajo con garantía. Tu tranquilidad es nuestra prioridad.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">💰</div>
+          <div>
+            <div class="feature-name">Precios justos</div>
+            <div class="feature-desc">Presupuesto sin cargo y sin sorpresas. Precio cerrado antes de empezar.</div>
+          </div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">⭐</div>
+          <div>
+            <div class="feature-name">Experiencia comprobada</div>
+            <div class="feature-desc">Más de una década de servicio en Capital Federal con clientes satisfechos.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stats-card reveal reveal-d2">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">10+</div>
+          <div class="stat-label">Años de experiencia</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Clientes satisfechos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">24h</div>
+          <div class="stat-label">Tiempo de respuesta</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">100%</div>
+          <div class="stat-label">Trabajo garantizado</div>
+        </div>
+      </div>
+      <div class="stats-divider"></div>
+      <p class="stats-testimonial">"Vino en la fecha pactada, hizo el arreglo y cobró un precio razonable. Muy conforme con el servicio."</p>
+      <p class="stats-author">— Cliente satisfecho, Google Maps</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALERÍA -->
+<section id="galeria">
+  <div class="galeria-header">
+    <p class="section-tag reveal">Nuestro trabajo</p>
+    <h2 class="section-title reveal reveal-d1">Galería de proyectos</h2>
+  </div>
+
+  <div class="galeria-grid">
+    <div class="galeria-item reveal">
+      <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&q=80" alt="Baño instalado">
+    </div>
+    <div class="galeria-item reveal reveal-d1">
+      <img src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=400&q=80" alt="Calefón instalado">
+    </div>
+    <div class="galeria-item reveal reveal-d2">
+      <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&q=80" alt="Plomero trabajando">
+    </div>
+    <div class="galeria-item reveal reveal-d3">
+      <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=400&q=80" alt="Radiador instalado">
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="faq-header">
+    <p class="section-tag reveal">Dudas frecuentes</p>
+    <h2 class="section-title reveal reveal-d1">Preguntas frecuentes</h2>
+  </div>
+
+  <div class="faq-list reveal reveal-d2">
+    <div class="faq-item">
+      <button class="faq-q">
+        ¿Cuáles son los horarios de atención?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Atendemos de lunes a sábado de 9 a 20 hs. Para emergencias también disponemos de servicio fuera de horario.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        ¿En qué zonas trabajan?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Trabajamos en toda la Ciudad Autónoma de Buenos Aires y alrededores. Palermo, Recoleta, Belgrano, Caballito, Almagro, y más.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        ¿Cobran el presupuesto?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">No, el presupuesto es completamente gratis y sin compromiso. Te damos el precio antes de empezar cualquier trabajo.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        ¿Ofrecen garantía por el trabajo?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Sí, todos nuestros trabajos tienen garantía. Si hay algún problema posterior a la reparación, volvemos sin costo adicional.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        ¿Qué medios de pago aceptan?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Aceptamos efectivo, transferencia bancaria y tarjetas de débito/crédito.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-q">
+        ¿Hacen trabajos de emergencia?
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="faq-a">Sí, atendemos emergencias de plomería. Ante pérdidas de agua o problemas urgentes, contactanos y llegamos lo antes posible.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+  <h2 class="reveal">¿Tenés un problema de plomería?<br><span>Llamanos ahora</span></h2>
+  <p class="reveal reveal-d1">No dejes que un caño roto arruine tu día. Contactanos y te damos una solución rápida y a precio justo.</p>
+  <div class="cta-buttons">
+    <a href="tel:01145591554" class="btn-orange reveal reveal-d2">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      011 4559-1554
+    </a>
+    <a href="https://wa.me/5491145591554?text=Hola! Necesito un plomero" class="btn-outline reveal reveal-d3" target="_blank">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.06 23.03c-.111.383.245.74.628.629l5.24-1.473A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.852-.582-5.42-1.585l-.387-.243-4.016 1.128 1.13-4.013-.252-.398A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Escribir por WhatsApp
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">LALO<span>PLOMERÍA</span></div>
+      <p class="footer-desc">Servicio profesional de plomería y calefacción en Capital Federal.</p>
+      <div class="footer-info">
+        <div class="footer-info-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          Jerónimo Salguero 1832, Palermo, CABA
+        </div>
+        <div class="footer-info-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.09 10.8 19.79 19.79 0 01.09 2.18 2 2 0 012.07 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          011 4559-1554
+        </div>
+        <div class="footer-info-item">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          Lun–Sáb 9:00–20:00 hs
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="footer-col-title">Servicios</div>
+      <ul class="footer-links">
+        <li><a href="#">Reparaciones generales</a></li>
+        <li><a href="#">Calefacción</a></li>
+        <li><a href="#">Destapaciones</a></li>
+        <li><a href="#">Instalación de gas</a></li>
+      </ul>
+    </div>
+    <div>
+      <div class="footer-col-title">Empresa</div>
+      <ul class="footer-links">
+        <li><a href="#nosotros">Sobre nosotros</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+        <li><a href="https://wa.me/5491145591554" target="_blank">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 Lalo Plomería. Todos los derechos reservados.</div>
+</footer>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/5491145591554?text=Hola! Necesito un plomero" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.06 23.03c-.111.383.245.74.628.629l5.24-1.473A11.953 11.953 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.99 0-3.852-.582-5.42-1.585l-.387-.243-4.016 1.128 1.13-4.013-.252-.398A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+</a>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Servicio cards stagger
+  const cards = document.querySelectorAll('.servicio-card');
+  const cardObs = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => {
+          e.target.style.opacity = '1';
+          e.target.style.transform = 'translateY(0)';
+          e.target.style.transition = 'opacity 0.5s ease, transform 0.5s ease, box-shadow 0.3s, transform 0.3s';
+        }, i * 80);
+      }
+    });
+  }, { threshold: 0.1 });
+  cards.forEach(c => cardObs.observe(c));
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+</script>
+</body>
+</html>
